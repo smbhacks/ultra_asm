@@ -16,12 +16,16 @@ const std::string message_types[]
 	"[ERROR] ",
 	"[WARNING] "
 };
-const std::string kPrefix = "ua.";
-const std::string kDoesntExit = "doesnt_exist";
+const std::string kUA_Prefix = "ua.";
+const std::string kUA_DoesntExit = "doesnt_exist";
 
+
+const std::string kDB = ".db";
+const std::string kORG = ".org";
 
 //global vars
 uint_fast8_t MessageFlags = kError;
+uint_fast16_t PC;
 
 //misc
 std::string only_filename(std::string filepath);

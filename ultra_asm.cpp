@@ -12,7 +12,7 @@ static bool file_exists(const std::string& name) {
 
 std::string read_file(std::string path)
 {
-	if (file_exists(path) == false) return std::format("{}", kPrefix + kDoesntExit);
+	if (file_exists(path) == false) return std::format("{}", kUA_Prefix + kUA_DoesntExit);
 	std::ifstream file(path);
 	std::string string_buffer((std::istreambuf_iterator<char>(file)),
 	std::istreambuf_iterator<char>());
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 {
 	if (argc < 3)
 	{
-		std::cout << std::format("\nUsage: {} main.asm output.nes -l -w\nl: generate listing\n-w: show warnings\n", only_filename(argv[0]));
+		std::cout << std::format("\nUsage: {} main.asm output.nes -l -w\nl: generate listing\nw: show warnings\n", only_filename(argv[0]));
 		return -1;
 	}
 	std::string cmd_input;
@@ -65,8 +65,10 @@ int main(int argc, char* argv[])
 
 	//start with main
 	asmfile main(argv[1]);
-	if (main.data == std::format("{}", kPrefix + kDoesntExit))
+	if (main.data == std::format("{}", kUA_Prefix + kUA_DoesntExit))
 	{
 		message(kError, std::format("Can't find main file: {}\n", argv[1]));
 	}
+
+	main.compile();
 }
