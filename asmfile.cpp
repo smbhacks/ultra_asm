@@ -37,6 +37,11 @@ std::vector<uint8_t> asmfile::compile()
 		}
 		if (opcode_name_id != UINT8_MAX) message(kWarning, std::format("Found opcode: {}", opcode_names[opcode_name_id]));
 
+		if (this_line.find_first_of(':') < this_line.size())
+		{
+			pos += this_line.find_first_of(':') + 1;
+			continue;
+		}
 		pos = data.find('\n', pos + 1);
 	} while (pos < data.size());
 

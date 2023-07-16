@@ -18,7 +18,7 @@ const std::string message_types[]
 };
 const std::string kUA_Prefix = "ua.";
 const std::string kUA_DoesntExit = "doesnt_exist";
-
+const std::string kUA_MakeBank = "makebank"; //size<SIZE IN HEX> pc<PC start>
 
 const std::string kDB = ".db";
 const std::string kORG = ".org";
