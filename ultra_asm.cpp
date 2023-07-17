@@ -63,12 +63,16 @@ int main(int argc, char* argv[])
 	//check for flags
 	if (exists(cmd_input, "-w")) MessageFlags += kWarning;
 
-	//start with main
+	//do main
 	asmfile main(argv[1]);
 	if (main.data == std::format("{}", kUA_Prefix + kUA_DoesntExit))
 	{
 		message(kError, std::format("Can't find main file: {}\n", argv[1]));
 	}
+	std::vector<uint8_t> compiled_data = main.compile();
 
-	main.compile();
+	//put into file
+	const uint8_t* ptr = compiled_data.data();
+	std::ofstream rom(only_filename(argv[2]));
+	rom.write(reinterpret_cast<const char*>(ptr), compiled_data.size());
 }
